@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <link href="https://fonts.googleapis.com/css?family=Lato:100,300,600" rel="stylesheet" type="text/css">
-        <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+        <!-- <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css"> -->
         <link type="text/css" rel="stylesheet" href="style.css">
 
         <title>Pig Game</title>
@@ -35,8 +35,17 @@
 
             <img src="dice-5.png" alt="Dice" class="dice">
         </div>
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js">
-        </script>
+        <div class="overlay">
+            <div class="popup">
+                <div class="popup--color">
+                    <h3 class="popup--tittle">Tu eliges el limite</h3>
+                    <input type="number" name="" class="hightScore" placeholder="¿Hasta que puntuacion quieres jugar?">
+                    <a class="popup--button">Vamo' a Darle</a>
+                    <a class="popup--button--rules">Quiero ver las reglas</a>
+                </div>
+            </div>
+        </div>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script src="app.js"></script>
     </body>
 </html>

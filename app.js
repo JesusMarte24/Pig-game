@@ -13,6 +13,7 @@ var score, roundScore, activePlayer, stateGame, limitScore;
 pop();
 init();
 
+
 document.querySelector('.btn-roll').addEventListener('click', function(){
 
   // Using the state variable
@@ -80,7 +81,7 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
 }
 
   document.querySelector('.btn-new').addEventListener('click', function(){
-    pop();
+    showLimit();
     init();
   });
 
@@ -106,22 +107,29 @@ function init(){
   document.querySelector('.player-' + activePlayer + '-panel').classList.add('active');
 }
 
+//Agregamos el modal donde se nos indican las reglas del juego
 function pop(){
   swal({
     // icon: 'info',
     title: 'Reglas',
-    text: '1-El primer jugador en lograr el score establecido ganara. \n \n 2-Si en uno de los dados sale 1 entonces el valor actual \'Current\' sera eliminado y pasara a ser turno del siguiente jugador. \n \n 3-Si ambos dados son 6 entonces tanto el score actual como el globar seran eliminados y pasara a jugar el siguiente jugador. \n \n 4- Si elijes \'Hold\' manter tu valor actual, este se guardara en tu score globar y pasara a jugar el siguiente jugador.',
-
-    button: 'Vamo\' a darle!',
-    content: {
-      element: 'input',
-      attributes: {
-        placeholder: '¿Hasta que puntuación deseas jugar?',
-        type: 'number'
-      },
-    },
-    closeOnClickOutside: false
-  });
+    text: '1-El primer jugador en lograr el score establecido ganara. \n \n 2-Si en uno de los dados sale 1 entonces el valor actual \'Current\' sera eliminado y pasara a ser turno del siguiente jugador. \n \n 3-Si ambos dados son 6 entonces tanto el score actual como el global seran eliminados y pasara a jugar el siguiente jugador. \n \n 4- Si elijes \'Hold\' manter tu valor actual, este se guardara en tu score global y pasara a jugar el siguiente jugador.',
+    button: 'Entendido!!'
+  })
 }
 
+//Agrege el modal donde indicamos el limite del juego
+  document.querySelector('.popup--button').addEventListener('click', function(){
+  document.querySelector('.overlay').classList.add('no--overlay');
+  setLimit();
+})
+
+document.querySelector('.popup--button--rules').addEventListener('click', pop);
+
+function showLimit(){
+  document.querySelector('.overlay').classList.remove('no--overlay');
+}
+
+function setLimit(){
+  limitScore = document.querySelector('.hightScore').value;
+}
 
