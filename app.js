@@ -9,7 +9,8 @@ GAME RULES:
 
 */
 
-var score, roundScore, activePlayer, stateGame;
+var score, roundScore, activePlayer, stateGame, limitScore;
+pop();
 init();
 
 document.querySelector('.btn-roll').addEventListener('click', function(){
@@ -46,7 +47,7 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
     //Update de UI
     document.querySelector('#score-' + activePlayer).textContent = score[activePlayer];
     //Check if the player won the game
-    if (score[activePlayer] >= 10){
+    if (score[activePlayer] >= limitScore){
       stateGame = false;
       document.querySelector('.dice').style.display = 'none';
       document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active')
@@ -78,7 +79,10 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
       document.querySelector('.dice').style.display = 'none';
 }
 
-  document.querySelector('.btn-new').addEventListener('click', init);
+  document.querySelector('.btn-new').addEventListener('click', function(){
+    pop();
+    init();
+  });
 
 
 
@@ -101,3 +105,23 @@ function init(){
   document.getElementById('name-1').textContent = 'player 2';
   document.querySelector('.player-' + activePlayer + '-panel').classList.add('active');
 }
+
+function pop(){
+  swal({
+    // icon: 'info',
+    title: 'Reglas',
+    text: '1-El primer jugador en lograr el score establecido ganara. \n \n 2-Si en uno de los dados sale 1 entonces el valor actual \'Current\' sera eliminado y pasara a ser turno del siguiente jugador. \n \n 3-Si ambos dados son 6 entonces tanto el score actual como el globar seran eliminados y pasara a jugar el siguiente jugador. \n \n 4- Si elijes \'Hold\' manter tu valor actual, este se guardara en tu score globar y pasara a jugar el siguiente jugador.',
+
+    button: 'Vamo\' a darle!',
+    content: {
+      element: 'input',
+      attributes: {
+        placeholder: '¿Hasta que puntuación deseas jugar?',
+        type: 'number'
+      },
+    },
+    closeOnClickOutside: false
+  });
+}
+
+
