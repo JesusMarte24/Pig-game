@@ -19,24 +19,25 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
   // Using the state variable
   if (stateGame){
     //#1 Random Number
-    var dice = Math.floor(Math.random() * 6) + 1;
+    var dice1 = Math.floor(Math.random() * 6) + 1;
+    var dice2 = Math.floor(Math.random() * 6) + 1;
 
     //#2 Display the result
-    var diceDom = document.querySelector('.dice');
-    diceDom.style.display = 'block';
-    diceDom.src = 'dice-' + dice + '.png'
+    document.getElementById('dice-1').style.display = 'block';
+    document.getElementById('dice-2').style.display = 'block';
+    document.getElementById('dice-1').src = 'dice-' + dice1 + '.png';
+    document.getElementById('dice-2').src = 'dice-' + dice2 + '.png';
 
-    //#3 Update the round score if the dice was not a 1
-    if (dice !== 1){
+  //#3 Update the round score if the dice was not a 1
+    if (dice1 !== 1 && dice2 !== 1){
       //Add the Score
-      roundScore += dice;
+      roundScore += dice1 + dice2;
       document.querySelector('#current-' + activePlayer).textContent = roundScore;
     } else{
       nextPlayer();
     }
   }
-
-})
+});
 
   document.querySelector('.btn-hold').addEventListener('click', function(){
 
@@ -50,7 +51,8 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
     //Check if the player won the game
     if (score[activePlayer] >= limitScore){
       stateGame = false;
-      document.querySelector('.dice').style.display = 'none';
+      document.getElementById('dice-1').style.display = 'none';
+      document.getElementById('dice-2').style.display = 'none';
       document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active')
       document.querySelector('#name-' + activePlayer).textContent = 'Winner!!!'
       document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
@@ -77,7 +79,8 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
       document.querySelector('.player-1-panel').classList.toggle('active');
 
       //Hide the dice when the active player change
-      document.querySelector('.dice').style.display = 'none';
+      document.getElementById('dice-1').style.display = 'none';
+      document.getElementById('dice-2').style.display = 'none';
 }
 
   document.querySelector('.btn-new').addEventListener('click', function(){
@@ -93,7 +96,8 @@ function init(){
   activePlayer = 0;
   stateGame = true;
 
-  document.querySelector('.dice').style.display = 'none';
+  document.getElementById('dice-1').style.display = 'none';
+  document.getElementById('dice-2').style.display = 'none';
   document.getElementById('score-0').textContent = '0';
   document.getElementById('current-0').textContent = '0';
   document.getElementById('score-1').textContent = '0';
@@ -112,7 +116,7 @@ function pop(){
   swal({
     // icon: 'info',
     title: 'Reglas',
-    text: '1-El primer jugador en lograr el score establecido ganara. \n \n 2-Si en uno de los dados sale 1 entonces el valor actual \'Current\' sera eliminado y pasara a ser turno del siguiente jugador. \n \n 3-Si ambos dados son 6 entonces tanto el score actual como el global seran eliminados y pasara a jugar el siguiente jugador. \n \n 4- Si elijes \'Hold\' manter tu valor actual, este se guardara en tu score global y pasara a jugar el siguiente jugador.',
+    text: '1-El primer jugador en lograr el score establecido ganara. \n \n 2-Si en uno de los dados sale 1 entonces el valor actual \'Current\' sera eliminado y pasara a ser turno del siguiente jugador. \n \n 3- Si elijes \'Hold\' manter tu valor actual, este se guardara en tu score global y pasara a jugar el siguiente jugador.',
     button: 'Entendido!!'
   })
 }
